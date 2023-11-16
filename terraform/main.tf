@@ -62,7 +62,7 @@ resource "github_repository_environment" "repository_environments" {
   )
 
   environment = each.value.environment
-  repository  = github_repository.repositories[each.value.repository].name
+  repository  = github_repository_collaborator.repository_collaborators[each.value.repository].repository
 
   reviewers {
     teams = [
@@ -79,8 +79,4 @@ resource "github_repository_environment" "repository_environments" {
     protected_branches     = true
     custom_branch_policies = false
   }
-
-  depends_on = [
-    github_repository_collaborator.repository_collaborators
-  ]
 }
