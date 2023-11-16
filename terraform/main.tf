@@ -7,9 +7,12 @@ resource "github_membership" "memberships" {
   role     = each.value
 }
 
-resource "github_repository" "repository" {
-  name        = "az-tf-app"
-  description = "Contains the Terraform configuration for the application on Azure."
+resource "github_repository" "repositories" {
+  for_each = {
+    "az-tf-app" = "Contains the Terraform configuration for the application on Azure."
+  }
+  name        = each.key
+  description = each.value
 }
 
 resource "github_team" "teams" {
