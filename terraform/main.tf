@@ -11,4 +11,5 @@ resource "github_team" "teams" {
 
   name        = each.key
   description = each.value
+  privacy     = "closed"
 }
