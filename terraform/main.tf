@@ -51,7 +51,7 @@ resource "github_repository_environment" "repository_environments" {
   )
 
   environment = each.value.environment
-  repository  = github_repository.github_repositories[each.value.repository].name
+  repository  = github_repository.repositories[each.value.repository].name
 
   reviewers {
     teams = [
