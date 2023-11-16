@@ -6,6 +6,7 @@ defaults:
 
 env:
   GITHUB: ${{ toJson(github) }}
+  GITHUB_TOKEN: ${{ github.token }}
 
 on:
   pull_request:
