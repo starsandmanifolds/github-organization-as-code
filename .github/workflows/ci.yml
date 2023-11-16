@@ -6,7 +6,7 @@ defaults:
 
 env:
   GITHUB: ${{ toJson(github) }}
-  GITHUB_TOKEN: ${{ github.token }}
+  GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
 on:
   pull_request:
