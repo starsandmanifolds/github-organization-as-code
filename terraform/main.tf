@@ -55,6 +55,7 @@ resource "github_repository_environment" "repository_environments" {
           repository  = repository
           environment = environment
           teams       = info.teams
+          users       = info.users
         }
       }
     ]...
