@@ -30,7 +30,7 @@ locals {
   repository_environments = {
     "az-tf-app" = {
       environments = ["Development", "Staging", "Production"]
-      teams        = ["gitops"]
+      teams        = ["az-tf-pr-approvers", "gitops"]
     }
   }
 }
