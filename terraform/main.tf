@@ -1,3 +1,12 @@
+resource "github_membership" "memberships" {
+  for_each = {
+    "adyavanapalli" = "admin"
+  }
+
+  username = each.key
+  role     = each.value
+}
+
 resource "github_repository" "repository" {
   name        = "az-tf-app"
   description = "Contains the Terraform configuration for the application on Azure."
