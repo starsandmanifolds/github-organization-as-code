@@ -26,11 +26,21 @@ resource "github_team" "teams" {
   privacy     = "closed"
 }
 
+resource "github_repository_collaborator" "repository_collaborators" {
+  for_each = {
+    "az-tf-app" = "adyavanapalli"
+  }
+
+  repository = github_repository.repositories[each.key].name
+  username   = github_membership.memberships[each.value].username
+}
+
 locals {
   repository_environments = {
     "az-tf-app" = {
       environments = ["Development", "Staging", "Production"]
       teams        = ["az-tf-pr-approvers", "gitops"]
+      users        = "adyavanapalli"
     }
   }
 }
@@ -64,4 +74,8 @@ resource "github_repository_environment" "repository_environments" {
     protected_branches     = true
     custom_branch_policies = false
   }
+
+  depends_on = [
+    github_repository_collaborator.repository_collaborators
+  ]
 }
