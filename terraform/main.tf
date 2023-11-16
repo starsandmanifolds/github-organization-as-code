@@ -42,16 +42,16 @@ resource "github_repository_environment" "repository_environments" {
       {
         for environment in info.environments :
         "${repository} - ${environment}" => {
-          repository = repository
+          repository  = repository
           environment = environment
-          teams = info.teams
+          teams       = info.teams
         }
       }
     ]...
   )
 
-  environment  = each.value.environment
-  repository   = github_repository.github_repositories[each.value.repository].name
+  environment = each.value.environment
+  repository  = github_repository.github_repositories[each.value.repository].name
 
   reviewers {
     teams = [
