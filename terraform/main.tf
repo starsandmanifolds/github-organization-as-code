@@ -40,7 +40,7 @@ locals {
     "az-tf-app" = {
       environments = ["Development", "Staging", "Production"]
       teams        = ["az-tf-pr-approvers", "gitops"]
-      users        = "adyavanapalli"
+      users        = ["adyavanapalli"]
     }
   }
 }
@@ -67,6 +67,11 @@ resource "github_repository_environment" "repository_environments" {
     teams = [
       for team in each.value.teams :
       github_team.teams[team].id
+    ]
+
+    users = [
+      for user in each.value.users :
+      github_membership.memberships[user].id
     ]
   }
 
