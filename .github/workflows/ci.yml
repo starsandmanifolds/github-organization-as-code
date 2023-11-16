@@ -4,6 +4,9 @@ defaults:
     shell: bash -o errexit -o nounset -o pipefail -o xtrace {0}
     working-directory: terraform
 
+env:
+  GITHUB: ${{ toJson(github) }}
+
 on:
   pull_request:
     branches:
