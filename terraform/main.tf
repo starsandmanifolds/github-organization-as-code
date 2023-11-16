@@ -28,11 +28,15 @@ resource "github_team" "teams" {
 
 resource "github_repository_collaborator" "repository_collaborators" {
   for_each = {
-    "az-tf-app" = "adyavanapalli"
+    "az-tf-app" = {
+      username   = "adyavanapalli"
+      permission = "admin"
+    }
   }
 
   repository = github_repository.repositories[each.key].name
-  username   = github_membership.memberships[each.value].username
+  username   = github_membership.memberships[each.value.username].username
+  permission = each.value.permission
 }
 
 locals {
