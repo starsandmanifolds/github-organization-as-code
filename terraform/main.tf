@@ -70,10 +70,10 @@ resource "github_repository_environment" "repository_environments" {
       github_team.teams[team].id
     ]
 
-    users = [
-      for user in each.value.users :
-      github_membership.memberships[user].id
-    ]
+    # users = [
+    #   for user in each.value.users :
+    #   github_membership.memberships[user].id
+    # ]
   }
 
   deployment_branch_policy {
